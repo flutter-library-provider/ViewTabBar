@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import './custom_tabbar_controller.dart';
-import './custom_tabbar_indicator.dart';
-import './custom_tabbar_transform.dart';
-import './custom_tabbar_models.dart';
+import 'view_tabbar_controller.dart';
+import 'view_tabbar_indicator.dart';
+import 'view_tabbar_transform.dart';
+import 'view_tabbar_models.dart';
 
-export 'custom_tabbar_controller.dart';
-export 'custom_tabbar_transform.dart';
-export 'custom_tabbar_indicator.dart';
-export 'custom_tabbar_models.dart';
+export 'view_tabbar_controller.dart';
+export 'view_tabbar_transform.dart';
+export 'view_tabbar_indicator.dart';
+export 'view_tabbar_models.dart';
 
 typedef IndexedTabBarItemBuilder = Widget Function(
   BuildContext context,
   int index,
 );
 
-class CustomTabBarContext extends InheritedWidget {
-  CustomTabBarContext({super.key, required super.child});
+class ViewTabBarContext extends InheritedWidget {
+  ViewTabBarContext({super.key, required super.child});
 
   final ValueNotifier<ScrollProgress> progressNotifier = ValueNotifier(
     const ScrollProgress(),
@@ -27,15 +27,15 @@ class CustomTabBarContext extends InheritedWidget {
     return true;
   }
 
-  static CustomTabBarContext? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<CustomTabBarContext>(
-      aspect: CustomTabBarContext,
+  static ViewTabBarContext? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ViewTabBarContext>(
+      aspect: ViewTabBarContext,
     );
   }
 }
 
-class CustomTabBar extends StatelessWidget {
-  const CustomTabBar({
+class ViewTabBar extends StatelessWidget {
+  const ViewTabBar({
     super.key,
     required this.builder,
     required this.itemCount,
@@ -54,7 +54,7 @@ class CustomTabBar extends StatelessWidget {
   final int itemCount;
   final Duration animationDuration;
   final IndexedTabBarItemBuilder builder;
-  final CustomTabBarController? tabBarController;
+  final ViewTabBarController? tabBarController;
   final PageController pageController;
   final CustomIndicator? indicator;
   final ValueChanged<int>? onTapItem;
@@ -66,8 +66,8 @@ class CustomTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTabBarContext(
-      child: _CustomTabBar(
+    return ViewTabBarContext(
+      child: _ViewTabBar(
         builder: builder,
         itemCount: itemCount,
         animationDuration: animationDuration,
@@ -85,8 +85,8 @@ class CustomTabBar extends StatelessWidget {
   }
 }
 
-class _CustomTabBar extends StatefulWidget {
-  const _CustomTabBar({
+class _ViewTabBar extends StatefulWidget {
+  const _ViewTabBar({
     required this.builder,
     required this.itemCount,
     required this.pageController,
@@ -104,7 +104,7 @@ class _CustomTabBar extends StatefulWidget {
   final int itemCount;
   final Duration animationDuration;
   final IndexedTabBarItemBuilder builder;
-  final CustomTabBarController? tabBarController;
+  final ViewTabBarController? tabBarController;
   final PageController pageController;
   final CustomIndicator? indicator;
   final ValueChanged<int>? onTapItem;
@@ -115,15 +115,15 @@ class _CustomTabBar extends StatefulWidget {
   final Axis direction;
 
   @override
-  _CustomTabBarState createState() => _CustomTabBarState();
+  _ViewTabBarState createState() => _ViewTabBarState();
 }
 
-class _CustomTabBarState extends State<_CustomTabBar>
+class _ViewTabBarState extends State<_ViewTabBar>
     with TickerProviderStateMixin {
   AnimationController? _progressController;
   ScrollController? _scrollController;
 
-  late CustomTabBarController _tabBarController = CustomTabBarController();
+  late ViewTabBarController _tabBarController = ViewTabBarController();
 
   late ValueNotifier<IndicatorPosition> positionNotifier = ValueNotifier(
     const IndicatorPosition(
@@ -136,7 +136,7 @@ class _CustomTabBarState extends State<_CustomTabBar>
     ),
   );
 
-  late final tabBarContext = CustomTabBarContext.of(context)!;
+  late final tabBarContext = ViewTabBarContext.of(context)!;
   late final progressNotifier = tabBarContext.progressNotifier;
 
   late final sizeList = List.generate(
@@ -160,7 +160,7 @@ class _CustomTabBarState extends State<_CustomTabBar>
   late bool _locked = false;
 
   @override
-  void didUpdateWidget(covariant _CustomTabBar oldWidget) {
+  void didUpdateWidget(covariant _ViewTabBar oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     _tabBarController.setDirection(widget.direction);
@@ -727,7 +727,7 @@ class TabBarItemState extends State<TabBarItem> {
     super.initState();
 
     Future.delayed(Duration.zero, () {
-      progressNotifier = CustomTabBarContext.of(context)?.progressNotifier;
+      progressNotifier = ViewTabBarContext.of(context)?.progressNotifier;
 
       setState(() {
         info = progressNotifier!.value;

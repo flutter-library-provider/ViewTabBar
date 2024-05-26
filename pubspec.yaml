@@ -1,6 +1,6 @@
-name: custom_tabbar
-description: 'CustomTabBar 基于 TabBarController 和 PageController, 实现 TabBar 和 PageView 的联动'
-homepage: https://github.com/flutter-library-provider/custom_tabbar
+name: view_tabbar
+description: 'ViewTabBar is based on TabBarController and PageController, achieving linkage between TabBar and PageView'
+homepage: https://github.com/flutter-library-provider/ViewTabBar
 version: 1.0.0
 
 environment:

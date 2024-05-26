@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import './custom_tabbar_models.dart';
+import 'view_tabbar_models.dart';
 
 typedef ProgressCallback = void Function(
   ScrollProgress info,
 );
 
-class CustomTabBarController {
+class ViewTabBarController {
   int _lastIndex = 0;
   int _targetIndex = 1;
   int _currentIndex = 0;

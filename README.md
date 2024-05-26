@@ -1,4 +1,4 @@
-# CustomTabBar
+# ViewTabBar
 
 - Provide pageController
 - Provide tabBarController

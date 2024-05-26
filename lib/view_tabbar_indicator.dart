@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import './custom_tabbar_controller.dart';
-import './custom_tabbar_models.dart';
+import 'view_tabbar_controller.dart';
+import 'view_tabbar_models.dart';
 
 abstract class CustomIndicator {
-  late CustomTabBarController controller;
+  late ViewTabBarController controller;
   double? top;
   double? left;
   double? right;
