@@ -8,7 +8,6 @@ import 'view_tabbar_models.dart';
 export 'view_tabbar_controller.dart';
 export 'view_tabbar_transform.dart';
 export 'view_tabbar_indicator.dart';
-export 'view_tabbar_models.dart';
 
 typedef IndexedTabBarItemBuilder = Widget Function(
   BuildContext context,
@@ -384,7 +383,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
         : null;
 
     children.add(
-      TabBarItemList(
+      ViewTabBarItemList(
         physics: physics,
         sizeList: sizeList,
         builder: widget.builder,
@@ -566,7 +565,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
   }
 }
 
-class TabBarItemList extends StatefulWidget {
+class ViewTabBarItemList extends StatefulWidget {
   final int itemCount;
   final Axis direction;
   final List<Size> sizeList;
@@ -576,7 +575,7 @@ class TabBarItemList extends StatefulWidget {
   final ValueChanged<int> onTapItem;
   final ScrollPhysics physics;
 
-  const TabBarItemList({
+  const ViewTabBarItemList({
     super.key,
     required this.builder,
     required this.itemCount,
@@ -589,10 +588,10 @@ class TabBarItemList extends StatefulWidget {
   });
 
   @override
-  TabBarItemListState createState() => TabBarItemListState();
+  ViewTabBarItemListState createState() => ViewTabBarItemListState();
 }
 
-class TabBarItemListState extends State<TabBarItemList> {
+class ViewTabBarItemListState extends State<ViewTabBarItemList> {
   bool isMeasureCompletedCallback = false;
 
   @override
@@ -672,38 +671,8 @@ class TabBarItemListState extends State<TabBarItemList> {
   }
 }
 
-class MeasureTabItemSizeBox extends SingleChildRenderObjectWidget {
-  const MeasureTabItemSizeBox({
-    super.key,
-    required Widget super.child,
-    required this.onSizeCallback,
-  });
-
-  final ValueChanged<Size> onSizeCallback;
-
-  @override
-  RenderObject createRenderObject(BuildContext context) {
-    return _MeasureTabItemSizeBox(onSizeCallback: onSizeCallback);
-  }
-}
-
-class _MeasureTabItemSizeBox extends RenderConstrainedBox {
-  final ValueChanged<Size> onSizeCallback;
-
-  _MeasureTabItemSizeBox({required this.onSizeCallback})
-      : super(additionalConstraints: const BoxConstraints());
-
-  @override
-  void layout(Constraints constraints, {bool parentUsesSize = false}) {
-    super.layout(constraints, parentUsesSize: parentUsesSize);
-    if (!size.isEmpty) {
-      onSizeCallback(Size.copy(size));
-    }
-  }
-}
-
-class TabBarItem extends StatefulWidget {
-  const TabBarItem({
+class ViewTabBarItem extends StatefulWidget {
+  const ViewTabBarItem({
     super.key,
     this.child,
     this.transform,
@@ -715,10 +684,10 @@ class TabBarItem extends StatefulWidget {
   final TabBarTransform? transform;
 
   @override
-  TabBarItemState createState() => TabBarItemState();
+  ViewTabBarItemState createState() => ViewTabBarItemState();
 }
 
-class TabBarItemState extends State<TabBarItem> {
+class ViewTabBarItemState extends State<ViewTabBarItem> {
   ValueNotifier<ScrollProgress>? progressNotifier;
   ScrollProgress? info;
 
@@ -752,5 +721,35 @@ class TabBarItemState extends State<TabBarItem> {
     }
 
     return Container(child: widget.child);
+  }
+}
+
+class MeasureTabItemSizeBox extends SingleChildRenderObjectWidget {
+  const MeasureTabItemSizeBox({
+    super.key,
+    required Widget super.child,
+    required this.onSizeCallback,
+  });
+
+  final ValueChanged<Size> onSizeCallback;
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return _MeasureTabItemSizeBox(onSizeCallback: onSizeCallback);
+  }
+}
+
+class _MeasureTabItemSizeBox extends RenderConstrainedBox {
+  final ValueChanged<Size> onSizeCallback;
+
+  _MeasureTabItemSizeBox({required this.onSizeCallback})
+      : super(additionalConstraints: const BoxConstraints());
+
+  @override
+  void layout(Constraints constraints, {bool parentUsesSize = false}) {
+    super.layout(constraints, parentUsesSize: parentUsesSize);
+    if (!size.isEmpty) {
+      onSizeCallback(Size.copy(size));
+    }
   }
 }
