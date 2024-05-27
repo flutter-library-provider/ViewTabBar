@@ -47,6 +47,7 @@ class ViewTabBar extends StatelessWidget {
     this.height,
     this.pinned = false,
     this.animationDuration = const Duration(milliseconds: 300),
+    this.controllerToScroll = true,
     this.controllerToJump = true,
   });
 
@@ -61,6 +62,7 @@ class ViewTabBar extends StatelessWidget {
   final double? height;
   final bool pinned;
   final bool controllerToJump;
+  final bool controllerToScroll;
   final Axis direction;
 
   @override
@@ -78,6 +80,7 @@ class ViewTabBar extends StatelessWidget {
         height: height,
         pinned: pinned,
         controllerToJump: controllerToJump,
+        controllerToScroll: controllerToScroll,
         direction: direction,
       ),
     );
@@ -98,6 +101,7 @@ class _ViewTabBar extends StatefulWidget {
     this.height,
     this.pinned = false,
     this.controllerToJump = true,
+    this.controllerToScroll = true,
   });
 
   final int itemCount;
@@ -111,6 +115,7 @@ class _ViewTabBar extends StatefulWidget {
   final double? height;
   final bool pinned;
   final bool controllerToJump;
+  final bool controllerToScroll;
   final Axis direction;
 
   @override
@@ -221,7 +226,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
         currentIndex: _currentIndex,
       );
 
-      if (_currentIndex != _targetIndex) {
+      if (widget.controllerToScroll && _currentIndex != _targetIndex) {
         _tabBarController.setLastIndex(_lastIndex);
         _tabBarController.setTargetIndex(_targetIndex);
         _tabBarController.setCurrentIndex(_currentIndex);
@@ -322,6 +327,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
       }
       child = _buildTabBarItemList();
     }
+
     if (widget.pinned && widget.direction == Axis.vertical) {
       if (widget.height != null) {
         _viewportSize = Size(
@@ -330,7 +336,9 @@ class _ViewTabBarState extends State<_ViewTabBar>
         );
       }
       child = _buildTabBarItemList();
-    } else {
+    }
+
+    if (!widget.pinned) {
       child = Scrollable(
         controller: _scrollController,
         viewportBuilder: (context, offset) {
@@ -360,7 +368,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
     return MeasureTabItemSizeBox(
       child: SizedBox(
         width: widget.width,
-        height: widget.direction == Axis.horizontal ? widget.height : null,
+        height: widget.height,
         child: child,
       ),
       onSizeCallback: (size) {
@@ -382,6 +390,10 @@ class _ViewTabBarState extends State<_ViewTabBar>
         ? (_viewportSize.width == -1 ? null : _viewportSize.width)
         : null;
 
+    final viewPortHeight = widget.pinned
+        ? (_viewportSize.height == -1 ? null : _viewportSize.height)
+        : null;
+
     children.add(
       ViewTabBarItemList(
         physics: physics,
@@ -390,6 +402,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
         direction: widget.direction,
         itemCount: widget.itemCount,
         viewPortWidth: viewPortWidth,
+        viewPortHeight: viewPortHeight,
         onMeasureCompleted: () {
           WidgetsBinding.instance.addPostFrameCallback((d) {
             setState(() {
@@ -570,6 +583,7 @@ class ViewTabBarItemList extends StatefulWidget {
   final Axis direction;
   final List<Size> sizeList;
   final double? viewPortWidth;
+  final double? viewPortHeight;
   final IndexedWidgetBuilder builder;
   final VoidCallback onMeasureCompleted;
   final ValueChanged<int> onTapItem;
@@ -582,6 +596,7 @@ class ViewTabBarItemList extends StatefulWidget {
     required this.direction,
     required this.sizeList,
     required this.viewPortWidth,
+    required this.viewPortHeight,
     required this.onMeasureCompleted,
     required this.onTapItem,
     required this.physics,
@@ -600,6 +615,7 @@ class ViewTabBarItemListState extends State<ViewTabBarItemList> {
 
     final isNeverScroll = widget.physics is NeverScrollableScrollPhysics;
     final isHorizontal = widget.direction == Axis.horizontal;
+    final isVertical = widget.direction == Axis.vertical;
 
     if (isNeverScroll && isHorizontal) {
       double? itemWidth = (widget.viewPortWidth ?? 0) / widget.itemCount;
@@ -621,7 +637,34 @@ class ViewTabBarItemListState extends State<ViewTabBarItemList> {
         widget.onMeasureCompleted();
         isMeasureCompletedCallback = true;
       }
-    } else {
+    }
+
+    if (isNeverScroll && isVertical) {
+      double? itemHeight = (widget.viewPortHeight ?? 0) / widget.itemCount;
+
+      for (var i = 0; i < widget.itemCount; i++) {
+        widgetList.add(
+          _createItem(
+            i,
+            SizedBox(
+              height: itemHeight,
+              child: widget.builder(context, i),
+            ),
+          ),
+        );
+        widget.sizeList[i] = Size(
+          widget.viewPortWidth ?? double.infinity,
+          itemHeight,
+        );
+      }
+
+      if (!isMeasureCompletedCallback) {
+        widget.onMeasureCompleted();
+        isMeasureCompletedCallback = true;
+      }
+    }
+
+    if (!isNeverScroll) {
       for (var i = 0; i < widget.itemCount; i++) {
         widgetList.add(
           _createItem(
@@ -645,12 +688,11 @@ class ViewTabBarItemListState extends State<ViewTabBarItemList> {
       return Row(children: widgetList);
     }
 
-    return SizedBox(
-      width: widget.viewPortWidth,
-      child: Column(
-        children: widgetList,
-      ),
-    );
+    if (widget.direction == Axis.vertical) {
+      return Column(children: widgetList);
+    }
+
+    return const SizedBox();
   }
 
   Widget _createItem(int index, Widget child) {

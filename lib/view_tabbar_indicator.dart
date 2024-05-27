@@ -312,7 +312,7 @@ class StandardIndicator extends CustomIndicator {
       double old = notifier.value.top ?? 0;
       double dist = targetEndOffset.dy - (sizeHeight + indicatorHeight) / 2;
       double top = old + (dist - old) * (dir == 1 ? progress : 1 - progress);
-      double bottom = totalTabBarHeight - top - indicatorWidth;
+      double bottom = totalTabBarHeight - top - indicatorHeight;
 
       notifier.value = IndicatorPosition(
         top,
