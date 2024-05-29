@@ -1,3 +1,8 @@
+## 1.2.1
+
+- Support PageView carousel animation
+- Optimize PageView carousel animation boundary problem
+
 ## 1.2.0
 
 - Fix the bug of Tabbar Indicator Position

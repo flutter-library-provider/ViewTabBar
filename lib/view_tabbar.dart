@@ -211,10 +211,12 @@ class _ViewTabBarState extends State<_ViewTabBar>
       final offset = dir == 1 ? 1 - page : page;
       final fixed = offset.toStringAsFixed(3);
       final value = double.parse(fixed);
+      double progress = 0;
 
-      final progress = dir == 1
-          ? (value > 0.001 ? page : 1.0)
-          : (value > 0.001 ? page : 0.0);
+      progress = dir == 1 ? (value > 0.001 ? page : 1.0) : progress;
+      progress = dir == -1 ? (value > 0.001 ? page : 0.0) : progress;
+      progress = dir == 1 ? (progress != 0.0 ? progress : 1.0) : progress;
+      progress = dir == -1 ? (progress != 1.0 ? progress : 0.0) : progress;
 
       _targetIndex = dir == 1 ? getCurrentPage.ceil() : getCurrentPage.floor();
       _currentIndex = dir == 1 ? getCurrentPage.floor() : getCurrentPage.ceil();
@@ -255,7 +257,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
         _tabBarController.setTargetIndex(_targetIndex);
         _tabBarController.setCurrentIndex(_targetIndex);
 
-        Future.delayed(const Duration(milliseconds: 20), () {
+        Future.delayed(const Duration(milliseconds: 5), () {
           _locked = false;
         });
       }
@@ -268,7 +270,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
         _tabBarController.setTargetIndex(_targetIndex);
         _tabBarController.setCurrentIndex(_targetIndex);
 
-        Future.delayed(const Duration(milliseconds: 20), () {
+        Future.delayed(const Duration(milliseconds: 5), () {
           _locked = false;
         });
       }
