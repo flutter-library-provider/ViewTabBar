@@ -226,7 +226,8 @@ class _ViewTabBarState extends State<_ViewTabBar>
         currentIndex: _currentIndex,
       );
 
-      if (widget.controllerToScroll && _currentIndex != _targetIndex) {
+      // remove: _currentIndex != _targetIndex (Using by pageController.jumpToPage)
+      if (widget.controllerToScroll) {
         _tabBarController.setLastIndex(_lastIndex);
         _tabBarController.setTargetIndex(_targetIndex);
         _tabBarController.setCurrentIndex(_currentIndex);
@@ -254,7 +255,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
         _tabBarController.setTargetIndex(_targetIndex);
         _tabBarController.setCurrentIndex(_targetIndex);
 
-        Future.delayed(const Duration(milliseconds: 50), () {
+        Future.delayed(const Duration(milliseconds: 20), () {
           _locked = false;
         });
       }
@@ -267,7 +268,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
         _tabBarController.setTargetIndex(_targetIndex);
         _tabBarController.setCurrentIndex(_targetIndex);
 
-        Future.delayed(const Duration(milliseconds: 50), () {
+        Future.delayed(const Duration(milliseconds: 20), () {
           _locked = false;
         });
       }

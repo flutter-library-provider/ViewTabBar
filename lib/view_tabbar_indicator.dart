@@ -285,10 +285,10 @@ class StandardIndicator extends CustomIndicator {
       double right = totalTabBarWidth - left - indicatorWidth;
 
       notifier.value = IndicatorPosition(
-        0,
+        top,
         left,
         right,
-        0,
+        bottom,
         indicatorWidth,
         indicatorHeight,
       );
@@ -316,8 +316,8 @@ class StandardIndicator extends CustomIndicator {
 
       notifier.value = IndicatorPosition(
         top,
-        0,
-        0,
+        left,
+        right,
         bottom,
         indicatorWidth,
         indicatorHeight,
