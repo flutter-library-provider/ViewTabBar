@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'view_tabbar_controller.dart';
@@ -194,13 +196,15 @@ class _ViewTabBarState extends State<_ViewTabBar>
         return;
       }
 
-      if (_lastIndex == getCurrentPage) {
-        return;
-      }
+      // fix bug: call onTap when page scrolling
+      // if (_lastIndex == getCurrentPage) {
+      //   return;
+      // }
 
-      if (_currentIndex == getCurrentPage) {
-        return;
-      }
+      // fix bug: call onTap when page scrolling
+      // if (_currentIndex == getCurrentPage) {
+      //   return;
+      // }
 
       if (_tabBarController.isTargetGoing) {
         return;
@@ -234,18 +238,18 @@ class _ViewTabBarState extends State<_ViewTabBar>
         _tabBarController.setTargetIndex(_targetIndex);
         _tabBarController.setCurrentIndex(_currentIndex);
 
-        widget.indicator?.updateScrollIndicator(
-          getCurrentPage,
-          sizeList,
-          progressNotifier,
-          positionNotifier,
-        );
-
         _tabBarController.setScrollTabItemByPageView(
           sizeList,
           _viewportSize / 2,
           widget.pageController,
           _scrollController,
+        );
+
+        widget.indicator?.updateScrollIndicator(
+          getCurrentPage,
+          sizeList,
+          progressNotifier,
+          positionNotifier,
         );
       }
 
@@ -285,9 +289,11 @@ class _ViewTabBarState extends State<_ViewTabBar>
           if (indicator?.top != null) {
             indicatorTop = positionValue.top! + (indicator?.top ?? 0);
           }
+
           if (indicator?.bottom != null) {
             indicatorBottom = positionValue.bottom! + (indicator?.bottom ?? 0);
           }
+
           indicatorLeft = positionValue.left;
           indicatorRight = positionValue.right;
           indicatorWidth = positionValue.width;
@@ -298,6 +304,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
           if (indicator?.left != null) {
             indicatorLeft = positionValue.left! + (indicator?.left ?? 0);
           }
+
           if (indicator?.right != null) {
             indicatorRight = positionValue.right! + (indicator?.right ?? 0);
           }
@@ -389,55 +396,65 @@ class _ViewTabBarState extends State<_ViewTabBar>
         ? const NeverScrollableScrollPhysics()
         : const BouncingScrollPhysics();
 
-    final viewPortWidth = widget.pinned
+    double? viewPortWidth = widget.pinned
         ? (_viewportSize.width == -1 ? null : _viewportSize.width)
         : null;
 
-    final viewPortHeight = widget.pinned
+    double? viewPortHeight = widget.pinned
         ? (_viewportSize.height == -1 ? null : _viewportSize.height)
         : null;
 
     children.add(
-      ViewTabBarItemList(
-        physics: physics,
-        sizeList: sizeList,
-        builder: widget.builder,
-        direction: widget.direction,
-        itemCount: widget.itemCount,
-        viewPortWidth: viewPortWidth,
-        viewPortHeight: viewPortHeight,
-        onMeasureCompleted: () {
-          WidgetsBinding.instance.addPostFrameCallback((d) {
-            setState(() {
-              progressNotifier.value = ScrollProgress(
-                currentIndex: _currentIndex,
-                targetIndex: _targetIndex,
-                progress: 0,
-                dir: 0,
-              );
+      LayoutBuilder(
+        builder: (context, constraints) {
+          double width = constraints.maxWidth;
+          double height = constraints.maxHeight;
 
-              widget.indicator?.updateScrollIndicator(
-                getCurrentPage,
-                sizeList,
-                progressNotifier,
-                positionNotifier,
-              );
+          viewPortWidth = viewPortWidth ?? width;
+          viewPortHeight = viewPortHeight ?? height;
 
-              _tabBarController.setScrollTabItemToCenter(
-                initialPage,
-                sizeList,
-                _viewportSize / 2,
-                _scrollController,
-                null,
-              );
-            });
-          });
-        },
-        onTapItem: (index) {
-          if (_currentIndex != index) {
-            widget.onTapItem?.call(index);
-            _animateToIndex(index);
-          }
+          return ViewTabBarItemList(
+            physics: physics,
+            sizeList: sizeList,
+            builder: widget.builder,
+            direction: widget.direction,
+            itemCount: widget.itemCount,
+            viewPortWidth: viewPortWidth,
+            viewPortHeight: viewPortHeight,
+            onMeasureCompleted: () {
+              WidgetsBinding.instance.addPostFrameCallback((d) {
+                setState(() {
+                  progressNotifier.value = ScrollProgress(
+                    currentIndex: _currentIndex,
+                    targetIndex: _targetIndex,
+                    progress: 0,
+                    dir: 0,
+                  );
+
+                  widget.indicator?.updateScrollIndicator(
+                    getCurrentPage,
+                    sizeList,
+                    progressNotifier,
+                    positionNotifier,
+                  );
+
+                  _tabBarController.setScrollTabItemToCenter(
+                    initialPage,
+                    sizeList,
+                    _viewportSize / 2,
+                    _scrollController,
+                    null,
+                  );
+                });
+              });
+            },
+            onTapItem: (index) {
+              if (_currentIndex != index) {
+                widget.onTapItem?.call(index);
+                _animateToIndex(index);
+              }
+            },
+          );
         },
       ),
     );

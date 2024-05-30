@@ -1,11 +1,12 @@
 name: view_tabbar_example
-description: 'Demonstrates how to use the container_tabbar plugin.'
+description: 'Demonstrates how to use the view_tabbar plugin.'
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: '>=3.4.1 <4.0.0'
+  sdk: '>=2.17.0 <4.0.0'
+  flutter: '>=2.5.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -82,3 +83,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+    - lib/assets/1.png
+    - lib/assets/2.png
+    - lib/assets/3.png
+    - lib/assets/4.png
+    - lib/assets/5.png
+    - lib/assets/6.png
+    - lib/assets/time.png

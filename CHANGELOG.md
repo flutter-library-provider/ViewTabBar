@@ -1,3 +1,12 @@
+## 1.2.2
+
+- Writing Test Demo (example/lib)
+  - example/lib/demo_carousel.dart
+  - example/lib/demo_vertical.dart
+  - example/lib/demo_horizontal.dart
+  - example/lib/demo_vertical_pinned.dart
+  - example/lib/demo_horizontal_pinned.dart
+
 ## 1.2.1
 
 - Support PageView carousel animation

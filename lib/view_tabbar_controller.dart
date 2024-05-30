@@ -157,13 +157,15 @@ class ViewTabBarController {
       return;
     }
 
-    setScrollTabItemToCenter(
-      pageController.page!.round(),
-      sizeList,
-      tabBarViewCenterSize,
-      scrollController,
-      null,
-    );
+    if (pageController.page != null) {
+      setScrollTabItemToCenter(
+        pageController.page!.round(),
+        sizeList,
+        tabBarViewCenterSize,
+        scrollController,
+        null,
+      );
+    }
   }
 
   ScrollTabItem computeScrollTabItem(double page, List<Size> sizeList) {
