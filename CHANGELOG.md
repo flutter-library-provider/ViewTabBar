@@ -1,11 +1,22 @@
+## 1.2.7
+
+- Update which Apis can be exported
+
 ## 1.2.6
+
+- Update README.md
+
+## 1.2.5
 
 - Test all features and demo (pass)
 
 ## 1.2.4
 
-- Provide Usage Docs
 - Provide README.md
+
+## 1.2.3
+
+- Provide Usage Docs
 
 ## 1.2.2
 

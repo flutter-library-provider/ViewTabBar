@@ -11,13 +11,13 @@ export 'view_tabbar_controller.dart';
 export 'view_tabbar_transform.dart';
 export 'view_tabbar_indicator.dart';
 
-typedef IndexedTabBarItemBuilder = Widget Function(
+typedef _IndexedTabBarItemBuilder = Widget Function(
   BuildContext context,
   int index,
 );
 
-class ViewTabBarContext extends InheritedWidget {
-  ViewTabBarContext({super.key, required super.child});
+class _ViewTabBarContext extends InheritedWidget {
+  _ViewTabBarContext({required super.child});
 
   final ValueNotifier<ScrollProgress> progressNotifier = ValueNotifier(
     const ScrollProgress(),
@@ -28,9 +28,9 @@ class ViewTabBarContext extends InheritedWidget {
     return true;
   }
 
-  static ViewTabBarContext? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ViewTabBarContext>(
-      aspect: ViewTabBarContext,
+  static _ViewTabBarContext? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<_ViewTabBarContext>(
+      aspect: _ViewTabBarContext,
     );
   }
 }
@@ -55,7 +55,7 @@ class ViewTabBar extends StatelessWidget {
 
   final int itemCount;
   final Duration animationDuration;
-  final IndexedTabBarItemBuilder builder;
+  final _IndexedTabBarItemBuilder builder;
   final ViewTabBarController? tabBarController;
   final PageController pageController;
   final CustomIndicator? indicator;
@@ -69,7 +69,7 @@ class ViewTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewTabBarContext(
+    return _ViewTabBarContext(
       child: _ViewTabBar(
         builder: builder,
         itemCount: itemCount,
@@ -108,7 +108,7 @@ class _ViewTabBar extends StatefulWidget {
 
   final int itemCount;
   final Duration animationDuration;
-  final IndexedTabBarItemBuilder builder;
+  final _IndexedTabBarItemBuilder builder;
   final ViewTabBarController? tabBarController;
   final PageController pageController;
   final CustomIndicator? indicator;
@@ -142,7 +142,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
     ),
   );
 
-  late final tabBarContext = ViewTabBarContext.of(context)!;
+  late final tabBarContext = _ViewTabBarContext.of(context)!;
   late final progressNotifier = tabBarContext.progressNotifier;
 
   late final sizeList = List.generate(
@@ -375,7 +375,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
       );
     }
 
-    return MeasureTabItemSizeBox(
+    return _MeasureTabItemSizeBox(
       child: SizedBox(
         width: widget.width,
         height: widget.height,
@@ -413,7 +413,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
           viewPortWidth = viewPortWidth ?? width;
           viewPortHeight = viewPortHeight ?? height;
 
-          return ViewTabBarItemList(
+          return _ViewTabBarItemList(
             physics: physics,
             sizeList: sizeList,
             builder: widget.builder,
@@ -598,7 +598,7 @@ class _ViewTabBarState extends State<_ViewTabBar>
   }
 }
 
-class ViewTabBarItemList extends StatefulWidget {
+class _ViewTabBarItemList extends StatefulWidget {
   final int itemCount;
   final Axis direction;
   final List<Size> sizeList;
@@ -609,8 +609,7 @@ class ViewTabBarItemList extends StatefulWidget {
   final ValueChanged<int> onTapItem;
   final ScrollPhysics physics;
 
-  const ViewTabBarItemList({
-    super.key,
+  const _ViewTabBarItemList({
     required this.builder,
     required this.itemCount,
     required this.direction,
@@ -623,10 +622,10 @@ class ViewTabBarItemList extends StatefulWidget {
   });
 
   @override
-  ViewTabBarItemListState createState() => ViewTabBarItemListState();
+  _ViewTabBarItemListState createState() => _ViewTabBarItemListState();
 }
 
-class ViewTabBarItemListState extends State<ViewTabBarItemList> {
+class _ViewTabBarItemListState extends State<_ViewTabBarItemList> {
   bool isMeasureCompletedCallback = false;
 
   @override
@@ -689,7 +688,7 @@ class ViewTabBarItemListState extends State<ViewTabBarItemList> {
         widgetList.add(
           _createItem(
             i,
-            MeasureTabItemSizeBox(
+            _MeasureTabItemSizeBox(
               child: widget.builder(context, i),
               onSizeCallback: (size) {
                 widget.sizeList[i] = size;
@@ -758,7 +757,7 @@ class ViewTabBarItemState extends State<ViewTabBarItem> {
     super.initState();
 
     Future.delayed(Duration.zero, () {
-      progressNotifier = ViewTabBarContext.of(context)?.progressNotifier;
+      progressNotifier = _ViewTabBarContext.of(context)?.progressNotifier;
 
       setState(() {
         info = progressNotifier!.value;
@@ -786,9 +785,8 @@ class ViewTabBarItemState extends State<ViewTabBarItem> {
   }
 }
 
-class MeasureTabItemSizeBox extends SingleChildRenderObjectWidget {
-  const MeasureTabItemSizeBox({
-    super.key,
+class _MeasureTabItemSizeBox extends SingleChildRenderObjectWidget {
+  const _MeasureTabItemSizeBox({
     required Widget super.child,
     required this.onSizeCallback,
   });
@@ -797,14 +795,14 @@ class MeasureTabItemSizeBox extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return _MeasureTabItemSizeBox(onSizeCallback: onSizeCallback);
+    return _LayoutMeasureTabItemSizeBox(onSizeCallback: onSizeCallback);
   }
 }
 
-class _MeasureTabItemSizeBox extends RenderConstrainedBox {
+class _LayoutMeasureTabItemSizeBox extends RenderConstrainedBox {
   final ValueChanged<Size> onSizeCallback;
 
-  _MeasureTabItemSizeBox({required this.onSizeCallback})
+  _LayoutMeasureTabItemSizeBox({required this.onSizeCallback})
       : super(additionalConstraints: const BoxConstraints());
 
   @override
