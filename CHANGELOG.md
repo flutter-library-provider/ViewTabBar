@@ -1,3 +1,7 @@
+## 1.2.6
+
+- Test all features and demo (pass)
+
 ## 1.2.4
 
 - Provide Usage Docs

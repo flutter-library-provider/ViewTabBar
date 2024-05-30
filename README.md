@@ -14,7 +14,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
 
    ```
      dependencies:
-       view_tabbar: ^1.2.3
+       view_tabbar: ^1.2.6
    ```
 
 2. 在命令行运行如下
@@ -461,17 +461,17 @@ Widget renderPageViewContent(context, index) {
 
 ### ScaleTransform
 
-| API       | 说明                                 | 必选 | 默认值 |
-| :-------- | :----------------------------------- | :--- | :----- |
-| builder   | widget 构建                          | 否   |        |
-| transform | transformer，嵌套使用 ScaleTransform | 否   |        |
-| maxScale  | tabbar 最大可缩放值                  | 否   | 1.2    |
+| API       | 说明                                  | 必选 | 默认值 |
+| :-------- | :------------------------------------ | :--- | :----- |
+| builder   | widget 构建                           | 否   |        |
+| transform | transformer，嵌套使用 ColorsTransform | 否   |        |
+| maxScale  | tabbar 最大可缩放值                   | 否   | 1.2    |
 
 <br/>
 
 ## Gif 演示
 
-### TabBar `Pinned` + PageView **------ (horizontal)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_horizontal_pinned.dart)
+### TabBar + PageView **------ (horizontal)** <span style="margin-right: 10px">[看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_horizontal_pinned.dart)</span>
 
   <p>
     <img 
@@ -481,35 +481,16 @@ Widget renderPageViewContent(context, index) {
       width="320px"
     >
     <img
-      style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;"
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-pinned)_2.gif"
-      alt="page_view-horizontal-pinned-2"
-      width="320px"
-    >
-  </p>
-
-  <br/>
-
-### TabBar `NoPinned` + PageView **------ (horizontal)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_horizontal.dart)
-
-  <p>
-    <img
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-no-pinned)_1.gif" 
       alt="page_view-horizontal-no-pinned-1"
       width="320px"
     >
-    <img 
-      style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-no-pinned)_2.gif" 
-      alt="page_view-horizontal-no-pinned-2"
-      width="320px"
-    >
   </p>
 
   <br/>
 
-### TabBar `Pinned` + PageView **------ (vertical)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_vertical_pinned.dart)
+### TabBar + PageView **------ (vertical)** <span style="margin-right: 10px">[看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_vertical_pinned.dart)</span>
 
   <p>
     <img 
@@ -520,34 +501,15 @@ Widget renderPageViewContent(context, index) {
     >
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-pinned)_2.gif" 
-      alt="page_view-vertical-pinned-2"
-      width="320px"
-    >
-  </p>
-
-  <br/>
-
-### TabBar `NoPinned` + PageView **------ (vertical)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_vertical.dart)
-
-  <p>
-    <img 
-      style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-no-pinned)_1.gif" 
       alt="page_view-vertical-no-pinned-1"
       width="320px"
     >
-    <img 
-      style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-no-pinned)_2.gif" 
-      alt="page_view-vertical-no-pinned-2"
-      width="320px"
-    >
   </p>
 
   <br/>
 
-### Carousel **------ (轮播图)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_carousel.dart)
+### Carousel **------ (轮播图)** <span style="margin-right: 10px">[看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_carousel.dart)</span>
 
   <p>
     <img 
