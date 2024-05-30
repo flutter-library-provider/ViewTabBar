@@ -1,3 +1,8 @@
+## 1.2.4
+
+- Provide Usage Docs
+- Provide README.md
+
 ## 1.2.2
 
 - Writing Test Demo (example/lib)

@@ -6,7 +6,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
 - 可实现 TabBar + PageView (vertical)
 - 可实现 Carousel (轮播图)
 
-<div style="hwight: 50x;"></div>
+<br/>
 
 ## 如何安装
 
@@ -14,7 +14,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
 
    ```
      dependencies:
-       view_tabbar: ^1.2.2
+       view_tabbar: ^1.2.3
    ```
 
 2. 在命令行运行如下
@@ -23,7 +23,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
     flutter pub get
    ```
 
-<div style="hwight: 50x;"></div>
+<br/>
 
 ## 如何使用
 
@@ -32,7 +32,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
     TabBar + PageView (pinned)
   </summary>
   
-  <div style="padding: 20px 16px;">
+  <br/>
 
 ```dart
   import 'package:flutter/material.dart';
@@ -145,7 +145,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
     Carousel (轮播图)
   </summary>
   
-  <div style="padding: 20px 16px;">
+  <br/>
 
 ```dart
 import 'dart:async';
@@ -407,168 +407,155 @@ Widget renderPageViewContent(context, index) {
 
 </details>
 
-<div style="hwight: 50x;"></div>
+<br/>
 
 ## API 说明
 
-- ViewTabBar
+### ViewTabBar
 
-  | API                | 说明                                                      | 必选 | 默认值                      |
-  | :----------------- | :-------------------------------------------------------- | :--- | :-------------------------- |
-  | pinned             | tabbar 固定                                               | 否   | false                       |
-  | builder            | widget 构建                                               | 是   |                             |
-  | itemCount          | tabbar 数量                                               | 是   |                             |
-  | direction          | tabbar 方向                                               | 否   | Axis.horizontal             |
-  | indicator          | tabbar 指示器                                             | 否   |                             |
-  | pageController     | PageView controller                                       | 是   | PageController              |
-  | tabBarController   | ViewTabBar controller                                     | 否   | ViewTabBarController        |
-  | animationDuration  | 动画时长，Duration.zero -> 禁用动画                       | 否   | Duration(milliseconds: 300) |
-  | controllerToScroll | PageView 滚动时，联动 TabBar/Indicator                    | 否   | true                        |
-  | controllerToJump   | TabBar 滑动时，联动 PageView 滚动                         | 否   | true                        |
-  | onTapItem          | TabBar Item onTap 事件                                    | 否   |                             |
-  | height             | tabbar 高度，当 direction 为 Axis.horizontal 时，请指定值 | 否   |                             |
-  | width              | tabbar 宽度，当 direction 为 Axis.vertical 时，请指定值   | 否   |                             |
+| API                | 说明                                                      | 必选 | 默认值                      |
+| :----------------- | :-------------------------------------------------------- | :--- | :-------------------------- |
+| pinned             | tabbar 固定                                               | 否   | false                       |
+| builder            | widget 构建                                               | 是   |                             |
+| itemCount          | tabbar 数量                                               | 是   |                             |
+| direction          | tabbar 方向                                               | 否   | Axis.horizontal             |
+| indicator          | tabbar 指示器                                             | 否   |                             |
+| pageController     | PageView controller                                       | 是   | PageController              |
+| tabBarController   | ViewTabBar controller                                     | 否   | ViewTabBarController        |
+| animationDuration  | 动画时长，Duration.zero -> 禁用动画                       | 否   | Duration(milliseconds: 300) |
+| controllerToScroll | PageView 滚动时，联动 TabBar/Indicator                    | 否   | true                        |
+| controllerToJump   | TabBar 滑动时，联动 PageView 滚动                         | 否   | true                        |
+| onTapItem          | TabBar Item onTap 事件                                    | 否   |                             |
+| height             | tabbar 高度，当 direction 为 Axis.horizontal 时，请指定值 | 否   |                             |
+| width              | tabbar 宽度，当 direction 为 Axis.vertical 时，请指定值   | 否   |                             |
 
-- ViewTabBarItem
+### ViewTabBarItem
 
-  | API       | 说明                                                          | 必选 | 默认值 |
-  | :-------- | :------------------------------------------------------------ | :--- | :----- |
-  | index     | tabar item index                                              | 是   |        |
-  | child     | tabar item child                                              | 否   |        |
-  | transform | tabar item transform, 目前有 ColorsTransform / ScaleTransform | 否   |        |
+| API       | 说明                                                          | 必选 | 默认值 |
+| :-------- | :------------------------------------------------------------ | :--- | :----- |
+| index     | tabar item index                                              | 是   |        |
+| child     | tabar item child                                              | 否   |        |
+| transform | tabar item transform, 目前有 ColorsTransform / ScaleTransform | 否   |        |
 
-- StandardIndicator
+### StandardIndicator
 
-  | API    | 说明                    | 必选 | 默认值 |
-  | :----- | :---------------------- | :--- | :----- |
-  | top    | indicator 顶部          | 否   |        |
-  | left   | indicator 左侧          | 否   |        |
-  | right  | indicator 右侧          | 否   |        |
-  | bottom | indicator 底部          | 否   |        |
-  | width  | indicator 宽度          | 否   |        |
-  | height | indicator 高度          | 否   |        |
-  | radius | indicator border radius | 否   |        |
-  | color  | indicator color         | 否   |        |
+| API    | 说明                    | 必选 | 默认值 |
+| :----- | :---------------------- | :--- | :----- |
+| top    | indicator 顶部          | 否   |        |
+| left   | indicator 左侧          | 否   |        |
+| right  | indicator 右侧          | 否   |        |
+| bottom | indicator 底部          | 否   |        |
+| width  | indicator 宽度          | 否   |        |
+| height | indicator 高度          | 否   |        |
+| radius | indicator border radius | 否   |        |
+| color  | indicator color         | 否   |        |
 
-- ColorsTransform
+### ColorsTransform
 
-  | API            | 说明                                 | 必选 | 默认值 |
-  | :------------- | :----------------------------------- | :--- | :----- |
-  | builder        | widget 构建                          | 否   |        |
-  | transform      | transformer，嵌套使用 ScaleTransform | 否   |        |
-  | normalColor    | tabbar 正常颜色                      | 否   |        |
-  | highlightColor | tabbar 高亮颜色                      | 否   |        |
+| API            | 说明                                 | 必选 | 默认值 |
+| :------------- | :----------------------------------- | :--- | :----- |
+| builder        | widget 构建                          | 否   |        |
+| transform      | transformer，嵌套使用 ScaleTransform | 否   |        |
+| normalColor    | tabbar 正常颜色                      | 否   |        |
+| highlightColor | tabbar 高亮颜色                      | 否   |        |
 
-- ScaleTransform
+### ScaleTransform
 
-  | API       | 说明                                 | 必选 | 默认值 |
-  | :-------- | :----------------------------------- | :--- | :----- |
-  | builder   | widget 构建                          | 否   |        |
-  | transform | transformer，嵌套使用 ScaleTransform | 否   |        |
-  | maxScale  | tabbar 最大可缩放值                  | 否   | 1.2    |
+| API       | 说明                                 | 必选 | 默认值 |
+| :-------- | :----------------------------------- | :--- | :----- |
+| builder   | widget 构建                          | 否   |        |
+| transform | transformer，嵌套使用 ScaleTransform | 否   |        |
+| maxScale  | tabbar 最大可缩放值                  | 否   | 1.2    |
 
-<div style="hwight: 50x;"></div>
+<br/>
 
 ## Gif 演示
 
-- TabBar `Pinned` + PageView **------ (horizontal)**
-
-  [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_horizontal_pinned.dart)
+### TabBar `Pinned` + PageView **------ (horizontal)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_horizontal_pinned.dart)
 
   <p>
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-pinned)_1.gif" 
-      alt="page_view-horizontal-pinned-1" 
-      width="240px"
+      alt="page_view-horizontal-pinned-1"
+      width="320px"
     >
-
-  <img
-  style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;"
-  src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-pinned)\_2.gif"
-  alt="page_view-horizontal-pinned-2"
-  width="240px"
-
-  >
-
+    <img
+      style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;"
+      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-pinned)_2.gif"
+      alt="page_view-horizontal-pinned-2"
+      width="320px"
+    >
   </p>
 
-  <div style="height: 20px"/>
+  <br/>
 
-- TabBar `NoPinned` + PageView **------ (horizontal)**
-
-  [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_horizontal.dart)
+### TabBar `NoPinned` + PageView **------ (horizontal)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_horizontal.dart)
 
   <p>
     <img
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-no-pinned)_1.gif" 
       alt="page_view-horizontal-no-pinned-1"
-      width="240px"
+      width="320px"
     >
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-no-pinned)_2.gif" 
       alt="page_view-horizontal-no-pinned-2"
-      width="240px"
+      width="320px"
     >
   </p>
 
-  <div style="height: 20px"/>
+  <br/>
 
-- TabBar `Pinned` + PageView **------ (vertical)**
-
-  [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_vertical_pinned.dart)
+### TabBar `Pinned` + PageView **------ (vertical)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_vertical_pinned.dart)
 
   <p>
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;"  
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-pinned)_1.gif" 
       alt="page_view-vertical-pinned-1"
-      width="240px"
+      width="320px"
     >
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-pinned)_2.gif" 
       alt="page_view-vertical-pinned-2"
-      width="240px"
+      width="320px"
     >
   </p>
 
-  <div style="height: 20px"/>
+  <br/>
 
-- TabBar `NoPinned` + PageView **------ (vertical)**
-
-  [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_vertical.dart)
+### TabBar `NoPinned` + PageView **------ (vertical)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_vertical.dart)
 
   <p>
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-no-pinned)_1.gif" 
       alt="page_view-vertical-no-pinned-1"
-      width="240px"
+      width="320px"
     >
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-no-pinned)_2.gif" 
       alt="page_view-vertical-no-pinned-2"
-      width="240px"
+      width="320px"
     >
   </p>
 
-  <div style="height: 20px"/>
+  <br/>
 
-- Carousel **------ (轮播图)**
-
-  [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_carousel.dart)
+### Carousel **------ (轮播图)** [看源码](https://github.com/flutter-library-provider/ViewTabBar/blob/main/example/lib/demo_carousel.dart)
 
   <p>
     <img 
       style="width: 100%;" 
       src="https://linpengteng.github.io/resource/flutter-tabbar/gif/carousel_1.gif" 
       alt="carousel_1"
-      width="240px"
+      width="320px"
     >
   </p>
 
-  <div style="height: 20px"/>
+  <br/>
