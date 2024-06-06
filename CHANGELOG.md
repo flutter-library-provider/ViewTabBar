@@ -1,3 +1,7 @@
+## 1.2.8
+
+- Fix: invalid use of a private type in a public API
+
 ## 1.2.7
 
 - Update which Apis can be exported

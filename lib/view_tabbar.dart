@@ -11,7 +11,7 @@ export 'view_tabbar_controller.dart';
 export 'view_tabbar_transform.dart';
 export 'view_tabbar_indicator.dart';
 
-typedef _IndexedTabBarItemBuilder = Widget Function(
+typedef IndexedTabBarItemBuilder = Widget Function(
   BuildContext context,
   int index,
 );
@@ -55,7 +55,7 @@ class ViewTabBar extends StatelessWidget {
 
   final int itemCount;
   final Duration animationDuration;
-  final _IndexedTabBarItemBuilder builder;
+  final IndexedTabBarItemBuilder builder;
   final ViewTabBarController? tabBarController;
   final PageController pageController;
   final CustomIndicator? indicator;
@@ -108,7 +108,7 @@ class _ViewTabBar extends StatefulWidget {
 
   final int itemCount;
   final Duration animationDuration;
-  final _IndexedTabBarItemBuilder builder;
+  final IndexedTabBarItemBuilder builder;
   final ViewTabBarController? tabBarController;
   final PageController pageController;
   final CustomIndicator? indicator;
