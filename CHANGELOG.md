@@ -1,3 +1,7 @@
+## 1.2.9
+
+- Chore: upgrade some dependencies
+
 ## 1.2.8
 
 - Fix: invalid use of a private type in a public API
