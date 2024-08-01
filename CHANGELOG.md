@@ -1,3 +1,8 @@
+## 1.3.0
+
+- Chore: upgrade some dependencies
+- Chore: update some docs
+
 ## 1.2.9
 
 - Chore: upgrade some dependencies
