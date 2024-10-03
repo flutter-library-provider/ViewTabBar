@@ -757,6 +757,11 @@ class ViewTabBarItemState extends State<ViewTabBarItem> {
     super.initState();
 
     Future.delayed(Duration.zero, () {
+      if (!context.mounted) {
+        return;
+      }
+
+      // ignore: use_build_context_synchronously
       progressNotifier = _ViewTabBarContext.of(context)?.progressNotifier;
 
       setState(() {

@@ -14,7 +14,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
 
    ```
      dependencies:
-       view_tabbar: ^1.3.0
+       view_tabbar: ^1.3.1
    ```
 
 2. 在命令行运行如下
@@ -476,13 +476,13 @@ Widget renderPageViewContent(context, index) {
   <p>
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-pinned)_1.gif" 
+      src="https://linpengteng.github.io/resource/flutter-tabbar/page_view (horizontal-pinned)_1.gif" 
       alt="page_view-horizontal-pinned-1"
       width="320px"
     >
     <img
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (horizontal-no-pinned)_1.gif" 
+      src="https://linpengteng.github.io/resource/flutter-tabbar/page_view (horizontal-no-pinned)_1.gif" 
       alt="page_view-horizontal-no-pinned-1"
       width="320px"
     >
@@ -495,13 +495,13 @@ Widget renderPageViewContent(context, index) {
   <p>
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;"  
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-pinned)_1.gif" 
+      src="https://linpengteng.github.io/resource/flutter-tabbar/page_view (vertical-pinned)_1.gif" 
       alt="page_view-vertical-pinned-1"
       width="320px"
     >
     <img 
       style="width: calc(50% - 30px); min-width: 240px; max-width: 320px; padding: 1px; margin: 0 15px 15px;" 
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/page_view (vertical-no-pinned)_1.gif" 
+      src="https://linpengteng.github.io/resource/flutter-tabbar/page_view (vertical-no-pinned)_1.gif" 
       alt="page_view-vertical-no-pinned-1"
       width="320px"
     >
@@ -514,7 +514,7 @@ Widget renderPageViewContent(context, index) {
   <p>
     <img 
       style="width: 100%;" 
-      src="https://linpengteng.github.io/resource/flutter-tabbar/gif/carousel_1.gif" 
+      src="https://linpengteng.github.io/resource/flutter-tabbar/carousel_1.gif" 
       alt="carousel_1"
       width="320px"
     >
