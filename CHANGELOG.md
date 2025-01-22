@@ -1,3 +1,7 @@
+## 1.3.2
+- chore: upgrade dependencies
+- fix: fix some bugs
+
 ## 1.3.1
 - Fix: the bug of 'BuildContext's across async gaps.
 - Chore: upgrade some dependencies

@@ -14,7 +14,7 @@ ViewTabBar 基于 TabBarController 和 PageController，实现了 TabBar 和 Pag
 
    ```
      dependencies:
-       view_tabbar: ^1.3.1
+       view_tabbar: ^1.3.2
    ```
 
 2. 在命令行运行如下
